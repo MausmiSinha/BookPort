@@ -1,0 +1,44 @@
+2026-09-13 13:07:11:016 | [BookPort] | INFO  | org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-13 13:07:11:122 | [BookPort] | INFO  | org.springframework.web.servlet.DispatcherServlet | Initializing Servlet 'dispatcherServlet'
+2026-09-13 13:07:11:126 | [BookPort] | INFO  | org.springframework.web.servlet.DispatcherServlet | Completed initialization in 4 ms
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Inside JwtFilter
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request URI: /auth/v1/pending
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request Method: GET
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authorization Header: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiJdLCJ1c2VySWQiOiIyNjE5OTAyMDY1OTM0MTg3MTAxIiwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODkyODEyODYsImV4cCI6MTc4OTI4ODQ4Nn0.cPOq6e4WL4DDBYu1EN5ltWc1fw-kg5lODXrQfTdCkyc
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Bearer token found and no existing authentication present
+2026-09-13 13:07:11:141 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside validateToken.
+2026-09-13 13:07:11:151 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside validateToken
+2026-09-13 13:07:11:237 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-13 13:07:11:237 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-13 13:07:11:307 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from validateToken.
+2026-09-13 13:07:11:307 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-13 13:07:11:307 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-13 13:07:11:307 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-13 13:07:11:313 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-13 13:07:11:313 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractUserName.
+2026-09-13 13:07:11:313 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-13 13:07:11:317 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-13 13:07:11:318 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractUserName.
+2026-09-13 13:07:11:320 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-13 13:07:11:320 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-13 13:07:11:321 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-13 13:07:11:322 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-13 13:07:11:324 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> User ID extracted: 2619902065934187101
+2026-09-13 13:07:11:324 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Username extracted: admin
+2026-09-13 13:07:11:324 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Roles extracted: [ADMIN]
+2026-09-13 13:07:11:326 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> UsernamePasswordAuthenticationToken created
+2026-09-13 13:07:11:326 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authentication stored in SecurityContext
+2026-09-13 13:07:11:326 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authenticated User: admin
+2026-09-13 13:07:11:385 | [BookPort] | INFO  | com.example.BookPort.auth.controller.v1.AuthController | AuthController--> Inside fetchPendingRequests.
+2026-09-13 13:07:11:387 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> authentication
+2026-09-13 13:07:11:388 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> UsernamePasswordAuthenticationToken [Principal=JwtUserPrincipal [userId=2619902065934187101, username=admin], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ADMIN]]
+2026-09-13 13:07:11:388 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> Current auADMIN
+2026-09-13 13:07:11:389 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> au.getAuthority: ADMIN
+2026-09-13 13:07:11:389 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> -------------------------
+2026-09-13 13:07:11:389 | [BookPort] | INFO  | com.example.BookPort.common.util.SecurityUtil | SecurityUtil--> Is current User a Admin? true
+2026-09-13 13:07:11:389 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthRegisterService | AuthRegisterService--> Inside getPendingRequests.
+2026-09-13 13:07:11:391 | [BookPort] | INFO  | com.example.BookPort.auth.repository.RegistrationRequestStageViewRepo | RegistrationRequestStageViewRepo--> Inside findByStatus.
+2026-09-13 13:07:11:639 | [BookPort] | INFO  | com.example.BookPort.auth.repository.RegistrationRequestStageViewRepo | RegistrationRequestStageViewRepo--> Returning from findByStatus.
+2026-09-13 13:07:11:639 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthRegisterService | AuthRegisterService--> Users with pending status fetched.
+2026-09-13 13:07:11:639 | [BookPort] | INFO  | com.example.BookPort.auth.repository.RegistrationRequestStageViewRepo | RegistrationRequestStageViewRepo--> Returning from getPendingRequests.
+2026-09-13 13:07:11:653 | [BookPort] | INFO  | com.example.BookPort.auth.repository.RegistrationRequestStageViewRepo | RegistrationRequestStageViewRepo--> Returning from fetchPendingRequests.
