@@ -1,0 +1,120 @@
+2026-09-27 17:29:15:420 | [BookPort] | INFO  | org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] | Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-27 17:29:15:422 | [BookPort] | INFO  | org.springframework.web.servlet.DispatcherServlet | Initializing Servlet 'dispatcherServlet'
+2026-09-27 17:29:15:424 | [BookPort] | INFO  | org.springframework.web.servlet.DispatcherServlet | Completed initialization in 2 ms
+2026-09-27 17:29:15:425 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Inside JwtFilter
+2026-09-27 17:29:15:426 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request URI: /auth/v1/login
+2026-09-27 17:29:15:426 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request Method: POST
+2026-09-27 17:29:15:426 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authorization Header: null
+2026-09-27 17:29:15:602 | [BookPort] | INFO  | com.example.BookPort.auth.controller.v1.AuthController | AuthController--> Inside login.
+2026-09-27 17:29:15:602 | [BookPort] | INFO  | com.example.BookPort.auth.controller.v1.AuthController | AuthController--> Request is not type of RestRequestDto. Skipping RequestProfile derivation.
+2026-09-27 17:29:15:602 | [BookPort] | INFO  | com.example.BookPort.auth.controller.v1.AuthController | AuthController--> Sending credentials to login service.
+2026-09-27 17:29:15:602 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Inside login.
+2026-09-27 17:29:15:602 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Going to authenticate username: abhogal
+2026-09-27 17:29:15:932 | [BookPort] | INFO  | com.example.BookPort.auth.security.BookPortUserDetailsService | BookPortUserDetailsService--> Inside loadUserByUsername.
+2026-09-27 17:29:15:932 | [BookPort] | INFO  | com.example.BookPort.auth.security.BookPortUserDetailsService | BookPortUserDetailsService--> Inside loadUserByUsername()
+2026-09-27 17:29:15:932 | [BookPort] | INFO  | com.example.BookPort.auth.repository.AuthUserDetailsRepo | AuthUserDetailsRepo--> Inside findAuthUserDetailsByUsername.
+2026-09-27 17:29:16:672 | [BookPort] | INFO  | com.example.BookPort.auth.repository.AuthUserDetailsRepo | AuthUserDetailsRepo--> Returning from findAuthUserDetailsByUsername.
+2026-09-27 17:29:16:673 | [BookPort] | INFO  | com.example.BookPort.auth.security.BookPortUserDetailsService | BookPortUserDetailsService--> User found with userId: 2619902048038711000
+2026-09-27 17:29:16:673 | [BookPort] | INFO  | com.example.BookPort.auth.security.BookPortUserDetailsService | BookPortUserDetailsService--> Creating BookPortUserPrincipal object
+2026-09-27 17:29:16:673 | [BookPort] | INFO  | com.example.BookPort.auth.repository.AuthUserDetailsRepo | AuthUserDetailsRepo--> Returning from loadUserByUsername.
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> AuthenticationManager returned authenticated object.
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Authentication successful for username: abhogal
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Going to extract principal from authentication object.
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Principal extracted. userId: 2619902048038711000, username: abhogal
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Going to generate JWT token.
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> Inside generateToken.
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> Inside generateToken()
+2026-09-27 17:29:16:983 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> Generating token for username: abhogal
+2026-09-27 17:29:16:986 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> Roles found: [USER, ADMIN]
+2026-09-27 17:29:16:986 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> JWT token generated successfully
+2026-09-27 17:29:16:992 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getExpiryInMs.
+2026-09-27 17:29:16:993 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getExpiryInMs.
+2026-09-27 17:29:16:993 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> Inside getKey()
+2026-09-27 17:29:16:994 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:16:994 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:16:995 | [BookPort] | INFO  | com.example.BookPort.auth.service.JwtService | JwtService--> SecretKey created successfully
+2026-09-27 17:29:17:019 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from generateToken.
+2026-09-27 17:29:17:019 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> JWT token generated successfully.
+2026-09-27 17:29:17:019 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractExpirationAsLocalDateTime.
+2026-09-27 17:29:17:019 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:17:019 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:17:027 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractExpirationAsLocalDateTime.
+2026-09-27 17:29:17:027 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthLoginService | AuthLoginService--> Returning from login method.
+2026-09-27 17:29:17:028 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from login.
+2026-09-27 17:29:17:028 | [BookPort] | INFO  | com.example.BookPort.auth.controller.v1.AuthController | AuthController--> Returns accessToken in response.
+2026-09-27 17:29:17:030 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from login.
+2026-09-27 17:29:25:916 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Inside JwtFilter
+2026-09-27 17:29:25:917 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request URI: /user/v1/users
+2026-09-27 17:29:25:920 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Request Method: POST
+2026-09-27 17:29:25:921 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authorization Header: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIiwiQURNSU4iXSwidXNlcklkIjoiMjYxOTkwMjA0ODAzODcxMTAwMCIsInN1YiI6ImFiaG9nYWwiLCJpYXQiOjE3OTA1MTAzNTYsImV4cCI6MTc5MDUxNzU1Nn0.0iAxUtYv4QMlXhF17533ZKo4rbMUZDMMZ7Z2abDOYzY
+2026-09-27 17:29:25:921 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Bearer token found and no existing authentication present
+2026-09-27 17:29:25:922 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside validateToken.
+2026-09-27 17:29:25:922 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside validateToken
+2026-09-27 17:29:25:922 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:922 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:923 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from validateToken.
+2026-09-27 17:29:25:923 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-27 17:29:25:924 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:924 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:925 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-27 17:29:25:926 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractUserName.
+2026-09-27 17:29:25:926 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:926 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:927 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractUserName.
+2026-09-27 17:29:25:927 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-27 17:29:25:927 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:927 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:928 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-27 17:29:25:929 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> User ID extracted: 2619902048038711000
+2026-09-27 17:29:25:929 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Username extracted: abhogal
+2026-09-27 17:29:25:929 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Roles extracted: [USER, ADMIN]
+2026-09-27 17:29:25:930 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> UsernamePasswordAuthenticationToken created
+2026-09-27 17:29:25:930 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authentication stored in SecurityContext
+2026-09-27 17:29:25:930 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtFilter | JwtFilter--> Authenticated User: abhogal
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Inside fetchUser.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Request URI: /user/v1/users
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> HTTP Method: POST
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractUserName.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractUserName.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtValidatorService | JwtValidatorService--> Inside extractCustomClaim.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Inside getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from getSecretKey.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.common.security.JwtKeyProvider | JwtKeyProvider--> Returning from extractCustomClaim.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Request Profile populated successfully.
+2026-09-27 17:29:25:955 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> RequestProfile [userName=abhogal, userId=2619902048038711000, userRole=[USER, ADMIN]]
+2026-09-27 17:29:25:961 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Incoming request: 
+2026-09-27 17:29:25:961 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> RestRequestDto [action=FECTH_ALL_USER, data={remark=Fetch All Users.}, requestProfile=RequestProfile [userName=abhogal, userId=2619902048038711000, userRole=[USER, ADMIN]], queryParam={page=1, size=10}]
+2026-09-27 17:29:25:961 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Incoming Action: FECTH_ALL_USER
+2026-09-27 17:29:25:961 | [BookPort] | INFO  | com.example.BookPort.user.controller.v1.UserController | UserController--> Request initiated by ADMIN.
+2026-09-27 17:29:25:971 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Inside fetchAllUsers.
+2026-09-27 17:29:25:973 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Fetching users. Page: 1, Size: 10
+2026-09-27 17:29:25:973 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Fetching users from Core table.
+2026-09-27 17:29:25:973 | [BookPort] | INFO  | org.springframework.data.repository.PagingAndSortingRepository | PagingAndSortingRepository--> Inside findAll.
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | org.springframework.data.repository.PagingAndSortingRepository | PagingAndSortingRepository--> Returning from findAll.
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> User IDs fetched from Core: [2616702003773461000, 2619902048038711000, 2619902050081003000, 2619902065934187000, 2619902065934187101, 2622002058840706000, 2625502045209675000, 2625502047908183000, 2625602044715684000, 2626102069498566000]
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Sending IntraRequest to Auth: IntraRequest [requestProfile=null, payload=null, requestingModule=USER, action=FECTH_ALL_USER, queryParam=[2616702003773461000, 2619902048038711000, 2619902050081003000, 2619902065934187000, 2619902065934187101, 2622002058840706000, 2625502045209675000, 2625502047908183000, 2625602044715684000, 2626102069498566000]]
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthService | AuthService--> Inside fetchAuthUsers.
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthService | AuthService--> User IDs received from Core: [2616702003773461000, 2619902048038711000, 2619902050081003000, 2619902065934187000, 2619902065934187101, 2622002058840706000, 2625502045209675000, 2625502047908183000, 2625602044715684000, 2626102069498566000]
+2026-09-27 17:29:26:049 | [BookPort] | INFO  | org.springframework.data.repository.ListCrudRepository | ListCrudRepository--> Inside findAllById.
+2026-09-27 17:29:26:098 | [BookPort] | INFO  | org.springframework.data.repository.ListCrudRepository | ListCrudRepository--> Returning from findAllById.
+2026-09-27 17:29:26:100 | [BookPort] | INFO  | com.example.BookPort.auth.service.AuthService | AuthService--> Auth users fetched: 10
+2026-09-27 17:29:26:101 | [BookPort] | INFO  | org.springframework.data.repository.ListCrudRepository | ListCrudRepository--> Returning from fetchAuthUsers.
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Response received from auth: [AuthUserDetailsDto [userId=2616702003773461000, username=ms1, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-06-16T01:02:54, updatedAt=2026-06-17T23:29:29, roles=[]], AuthUserDetailsDto [userId=2619902048038711000, username=abhogal, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-07-18T13:20:39, updatedAt=2026-07-18T13:20:39, roles=[USER, ADMIN]], AuthUserDetailsDto [userId=2619902050081003000, username=abhogal8, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-07-18T13:54:41, updatedAt=2026-07-18T13:54:41, roles=[]], AuthUserDetailsDto [userId=2619902065934187000, username=abhogal11, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-07-18T18:18:55, updatedAt=2026-07-18T18:18:55, roles=[]], AuthUserDetailsDto [userId=2619902065934187101, username=admin, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-05-31T00:05:33, updatedAt=2026-08-09T17:02:02, roles=[ADMIN]], AuthUserDetailsDto [userId=2622002058840706000, username=MAUSINHA, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-08-08T16:20:41, updatedAt=2026-08-08T16:20:41, roles=[USER]], AuthUserDetailsDto [userId=2625502045209675000, username=MAUSINHA3, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-09-12T12:33:30, updatedAt=2026-09-12T12:33:30, roles=[USER]], AuthUserDetailsDto [userId=2625502047908183000, username=MAUSINHA2, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-09-12T13:18:29, updatedAt=2026-09-12T13:18:29, roles=[USER]], AuthUserDetailsDto [userId=2625602044715684000, username=MAUSINHA5, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-09-13T12:25:16, updatedAt=2026-09-13T12:25:16, roles=[USER]], AuthUserDetailsDto [userId=2626102069498566000, username=MAUSINHA7, accountNonExpired=true, accountNonLocked=true, credentialsNonExpired=true, enabled=true, failedAttempts=0, lastLoginAt=null, createdAt=2026-09-18T19:18:19, updatedAt=2026-09-18T19:43:54, roles=[USER]]]
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2616702003773461000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2619902048038711000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2619902050081003000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2619902065934187000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2619902065934187101
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2622002058840706000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2625502045209675000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2625502047908183000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2625602044715684000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | com.example.BookPort.user.service.CoreUserService | CoreUserService--> Going to get Auth data for userId: 2626102069498566000
+2026-09-27 17:29:26:104 | [BookPort] | INFO  | org.springframework.data.repository.ListCrudRepository | ListCrudRepository--> Returning from fetchAllUsers.
+2026-09-27 17:29:26:119 | [BookPort] | INFO  | org.springframework.data.repository.ListCrudRepository | ListCrudRepository--> Returning from fetchUser.
