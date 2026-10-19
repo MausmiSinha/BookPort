@@ -2,7 +2,6 @@ package com.example.BookPort.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
@@ -18,11 +17,13 @@ import com.example.BookPort.common.dto.IntraRequest;
 import com.example.BookPort.common.dto.MetaDataDto;
 import com.example.BookPort.common.exceptions.UserNotFoundException;
 import com.example.BookPort.common.exceptions.ValidationException;
+import com.example.BookPort.common.kafka.producer.KafkaProducerService;
 import com.example.BookPort.common.logging.Debugger;
 import com.example.BookPort.user.assembler.CoreUserAssembler;
 import com.example.BookPort.user.dto.UserDetailsResponseDto;
 import com.example.BookPort.user.entity.CoreUserDetail;
 import com.example.BookPort.user.repository.CoreUserDetailRepo;
+import com.example.BookPort.user.repository.RoleRequestRepo;
 
 import jakarta.transaction.Transactional;
 
@@ -41,6 +42,16 @@ public class CoreUserService {
 	
 	@Autowired
 	CoreUserDetailRepo coreUserRepo;
+	
+	@Autowired
+	KafkaProducerService kafkaProducerService;
+	
+	@Autowired
+	RoleRequestRepo roleRequestRepo;
+	
+	@Autowired
+	CoreUserDetailRepo coreUserDetailRepo;
+	
 	
 	@Transactional
 	public UserDetailsResponseDto fetchUser(String userId, ArrayList<String> roles) {
@@ -115,9 +126,9 @@ public class CoreUserService {
 				}
 			}
 		}
-		
 		return response;
 	}
 
+	
 
 }

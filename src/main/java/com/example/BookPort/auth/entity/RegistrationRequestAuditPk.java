@@ -3,9 +3,6 @@ package com.example.BookPort.auth.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-
 /**
  * Composite Primary Key class for the bptb_registration_request_audit table.
  *

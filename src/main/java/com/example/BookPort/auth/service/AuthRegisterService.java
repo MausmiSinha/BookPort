@@ -34,6 +34,7 @@ import com.example.BookPort.common.dto.IntraRequest;
 import com.example.BookPort.common.dto.ProcessingStatusEnum;
 import com.example.BookPort.common.dto.RequestProfile;
 import com.example.BookPort.common.dto.RestRequestDto;
+import com.example.BookPort.common.dto.RoleEnum;
 import com.example.BookPort.common.dto.StatusEnum;
 import com.example.BookPort.common.exceptions.RegistrationRequestNotFoundException;
 import com.example.BookPort.common.exceptions.RoleNotFoundException;
@@ -46,7 +47,6 @@ import com.example.BookPort.notification.service.NotificationService;
 import com.example.BookPort.user.service.CoreRegisterService;
 
 import jakarta.transaction.Transactional;
-import tools.jackson.databind.ObjectMapper;
 
 @Service("AuthRegisterService")
 public class AuthRegisterService {

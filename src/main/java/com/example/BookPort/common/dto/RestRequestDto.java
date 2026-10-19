@@ -12,7 +12,6 @@ public class RestRequestDto implements Serializable{
 	@NotNull(message = "Action is mandatory")
 	private String action;
 	
-	@NotNull(message = "Data is mandatory")
 	private Object data;
 	
 	private RequestProfile requestProfile;
@@ -28,7 +27,7 @@ public class RestRequestDto implements Serializable{
 	}
 
 	public String getAction() {
-		return action;
+		return action.toUpperCase();
 	}
 
 	public void setAction(String action) {

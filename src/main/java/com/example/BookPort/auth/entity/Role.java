@@ -1,7 +1,11 @@
 package com.example.BookPort.auth.entity;
 
+import com.example.BookPort.common.dto.RoleEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 

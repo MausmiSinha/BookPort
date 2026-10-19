@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.BookPort.auth.entity.Role;
+import com.example.BookPort.common.dto.RoleEnum;
 
 @Repository
 public interface RoleRepo extends JpaRepository<Role, String>{

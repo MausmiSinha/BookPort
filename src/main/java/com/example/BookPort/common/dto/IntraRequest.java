@@ -1,6 +1,8 @@
 package com.example.BookPort.common.dto;
 
-public class IntraRequest {
+import java.io.Serializable;
+
+public class IntraRequest implements Serializable {
 	
 	private RequestProfile requestProfile;
 	

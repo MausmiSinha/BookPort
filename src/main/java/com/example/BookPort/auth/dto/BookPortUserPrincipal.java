@@ -30,7 +30,7 @@ public class BookPortUserPrincipal implements UserDetails{
 		List<GrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : user.getRoles()) {
-            String roleName = role.getRoleName();
+            String roleName = role.getRoleName().toString();
 
 
             authorities.add(new SimpleGrantedAuthority(roleName));

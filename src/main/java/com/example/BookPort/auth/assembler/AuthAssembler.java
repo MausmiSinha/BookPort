@@ -136,7 +136,7 @@ public class AuthAssembler {
 	    response.setUsername(request.getUsername());
 	    List<String> roles = new ArrayList<String>();
 	    for(Role role: request.getRoles()) {
-	    	roles.add(role.getRoleName().toUpperCase());
+	    	roles.add(role.getRoleName().toString());
 	    }
 	    response.setRoles(roles);
 	    response.setAccountNonExpired(request.getAccountNonExpired());

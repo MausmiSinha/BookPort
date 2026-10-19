@@ -47,7 +47,7 @@ public class CommonSecurityConfig {
         d.dbg("Configuring authorization rules");
         d.dbg("Permitting: /auth/v1/register and /auth/v1/login. All other endpoints require authentication");
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/v1/register","/auth/v1/register/update" , "/auth/v1/login", "/auth/v1/track", "/dummy/*", "/auth/v1/register/test").permitAll()
+                .requestMatchers("/auth/v1/register","/auth/v1/register/update","/actuator/health", "/auth/v1/login", "/auth/v1/track", "/dummy/*", "/auth/v1/register/test").permitAll()
                 .anyRequest().authenticated()
         );
 

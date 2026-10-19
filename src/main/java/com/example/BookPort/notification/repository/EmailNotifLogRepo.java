@@ -7,5 +7,4 @@ import com.example.BookPort.notification.entity.EmailNotifLog;
 
 @Repository
 public interface EmailNotifLogRepo extends JpaRepository<EmailNotifLog, String>{
-	
 }

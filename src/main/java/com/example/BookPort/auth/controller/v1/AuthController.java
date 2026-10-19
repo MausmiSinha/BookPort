@@ -179,6 +179,11 @@ public class AuthController {
 		
 		RequestProfile requestProfile = request.getRequestProfile();
 		
+		if (request.getData() == null) {
+		d.dbg("Data is required");
+        throw new ValidationException("Data is required.");
+		}
+		
 		if(!requestProfile.getUserRole().contains(AppConstants.ADMIN)) {
 			throw new AuthorizationDeniedException("User is not a Admin, only admin can access auth/v1/processAuth");
 		}

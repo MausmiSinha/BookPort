@@ -47,5 +47,5 @@ public class JwtKeyProvider {
     public int getExpiryInMs() {
         return expiryInMs;
     }
-
+    
 }

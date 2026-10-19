@@ -1,6 +1,7 @@
 package com.example.BookPort.notification.entity;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +34,7 @@ public class EmailNotifLog {
 	private String emailSubject;
 	
 	@Column(name="email_message")
-	private String emailMessage;
+	private byte[] emailMessage;
 	
 	@Column(name="notif_status")
 	private String notifStatus;
@@ -92,11 +93,11 @@ public class EmailNotifLog {
 		this.emailSubject = emailSubject;
 	}
 
-	public String getEmailMessage() {
+	public byte[] getEmailMessage() {
 		return emailMessage;
 	}
 
-	public void setEmailMessage(String emailMessage) {
+	public void setEmailMessage(byte[] emailMessage) {
 		this.emailMessage = emailMessage;
 	}
 
@@ -128,8 +129,8 @@ public class EmailNotifLog {
 	public String toString() {
 		return "EmailNotifLog [notificationId=" + notificationId + ", producerModule=" + producerModule
 				+ ", receiverEmail=" + receiverEmail + ", emailType=" + emailType + ", receiverUserId=" + receiverUserId
-				+ ", emailSubject=" + emailSubject + ", emailMessage=" + emailMessage + ", notifStatus=" + notifStatus
-				+ ", retryCount=" + retryCount + ", createdAt=" + createdAt + "]";
+				+ ", emailSubject=" + emailSubject + ", emailMessage=" + Arrays.toString(emailMessage)
+				+ ", notifStatus=" + notifStatus + ", retryCount=" + retryCount + ", createdAt=" + createdAt + "]";
 	}
 	
 }
