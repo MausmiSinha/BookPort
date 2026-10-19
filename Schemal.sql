@@ -1,6 +1,32 @@
+/*Database Creation*/
 CREATE DATABASE IF NOT EXISTS library_management;
 
 USE library_management;
+/*****************************************************************************************************************************************************/
+
+/*Table Creation*/
+CREATE TABLE bptb_registration_request_audit (
+  version_no INT NOT NULL DEFAULT 1,
+  registration_id VARCHAR(19) NOT NULL ,
+  username VARCHAR(100) NOT NULL,
+  name VARCHAR(500) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  mobile_number VARCHAR(13),
+  gender ENUM('MALE', 'FEMALE', 'OTHERS') NOT NULL,
+  dob DATE NOT NULL,
+  status ENUM('PENDING', 'APPROVED', 'REJECTED', 'INFO_REQUIRED') NOT NULL DEFAULT 'PENDING',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  password_hash VARCHAR(255) NOT NULL,
+  gov_id_front LONGBLOB NOT NULL,
+  gov_id_back LONGBLOB NOT NULL,
+  photo LONGBLOB NOT NULL,
+  processing_status ENUM('HOLD', 'FAILED', 'COMPLETED') NOT NULL DEFAULT 'HOLD',
+  remark VARCHAR(500),
+  updated_by VARCHAR(100) NOT NULL,
+  
+  PRIMARY KEY (version_no, registration_id, username, email)
+);
 
 CREATE TABLE core_user_details (
   user_id VARCHAR(36) PRIMARY KEY,
@@ -17,19 +43,9 @@ CREATE TABLE core_user_details (
   CONSTRAINT uk_core_user_mobile UNIQUE (mobile_number)
 );
 
-CREATE TABLE address_directory (
-  user_id VARCHAR(36) PRIMARY KEY,
-  building_name VARCHAR(255),
-  street_name VARCHAR(255),
-  post_code VARCHAR(20),
-  town_name VARCHAR(100),
-  state VARCHAR(100),
-  country VARCHAR(100),
-
-  CONSTRAINT fk_address_user
-    FOREIGN KEY (user_id)
-    REFERENCES core_user_details(user_id)
-);
+ALTER TABLE core_user_details
+DROP INDEX uk_core_user_mobile,
+MODIFY mobile_number VARCHAR(10) NOT NULL;
 
 CREATE TABLE auth_user_details (
   user_id VARCHAR(36) PRIMARY KEY,
@@ -47,16 +63,17 @@ CREATE TABLE auth_user_details (
   CONSTRAINT uk_auth_username UNIQUE (username)
 );
 
+select * from roles;
 CREATE TABLE roles (
-  role_id VARCHAR(36) PRIMARY KEY,
+  role_id VARCHAR(19) PRIMARY KEY,
   role_name VARCHAR(100) NOT NULL,
 
   CONSTRAINT uk_role_name UNIQUE (role_name)
 );
 
 CREATE TABLE user_roles (
-  user_id VARCHAR(36) NOT NULL,
-  role_id VARCHAR(25) NOT NULL,
+  user_id VARCHAR(19) NOT NULL,
+  role_id VARCHAR(19) NOT NULL,
 
   PRIMARY KEY (user_id, role_id),
 
@@ -68,27 +85,43 @@ CREATE TABLE user_roles (
     FOREIGN KEY (role_id)
     REFERENCES roles(role_id)
 );
-Drop table password_history;
-
 
 CREATE TABLE password_history (
-  password_history_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  password_history_id VARCHAR(36) PRIMARY KEY,
   user_id VARCHAR(36) NOT NULL,
-  old_password VARCHAR(255),
+  old_password VARCHAR(255) NOT NULL,
   latest_password VARCHAR(255) NOT NULL,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_reverted BOOLEAN NOT NULL DEFAULT FALSE,
-
-  INDEX idx_password_history_user_id (user_id),
-
+  remark VARCHAR(500),
   CONSTRAINT fk_password_history_auth_user
     FOREIGN KEY (user_id)
     REFERENCES auth_user_details(user_id)
 );
 
-/*
-	Notification Log table
-*/
+CREATE TABLE role_request (
+    request_id VARCHAR(36) PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+	name VARCHAR(500) NOT NULL,
+    user_email VARCHAR(150) NOT NULL,
+    role VARCHAR(50) NOT NULL, -- Role can be 'ADMIN', 'LIBRARIAN'
+    operation VARCHAR(20) NOT NULL, -- Operation defines: GRANT, REVOKE
+    status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
+    remark VARCHAR(500),
+    requested_by VARCHAR(36) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    processed_at TIMESTAMP NULL
+);
+
+ALTER TABLE role_request
+DROP COLUMN processed_at;
+
+Alter table role_request 
+add column updated_by VARCHAR(36) NOT NULL;
+
 CREATE TABLE email_notification_logs (
 	notification_id VARCHAR(36) PRIMARY KEY,
     producer_module VARCHAR(100) NOT NULL,
@@ -96,165 +129,75 @@ CREATE TABLE email_notification_logs (
     email_type VARCHAR(200) NOT NULL,
     receiver_user_id VARCHAR(25) NOT NULL,
     email_subject VARCHAR(200) NOT NULL,
-    email_message VARCHAR(5000),
+    email_message LONGBLOB,
     notif_status VARCHAR(200),
     retry_count INT(1) Default 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
+/*****************************************************************************************************************************************************/
+
+/*Describe Table*/
+show tables;
+/*****************************************************************************************************************************************************/
+
+/*Static Data*/
+-- Roles
+insert into roles values('262040108146104999', 'ADMIN');
+insert into roles values('262040108146104101', 'USER');
+-- user_roles 
+insert into user_roles values('2619902065934187101', '262040108146104999'); -- for admin
+
+/*****************************************************************************************************************************************************/
+
+
+/*View Creation*/
+CREATE VIEW bpvw_registraion_request_stage AS
+SELECT
+    r.registration_id,
+    r.username,
+    r.name,
+    r.email,
+    r.mobile_number,
+    r.gender,
+    r.dob,
+    r.status,
+    r.created_at,
+    r.updated_at,
+    r.password_hash,
+    r.gov_id_front,
+    r.gov_id_back,
+    r.photo,
+    r.processing_status,
+    r.remark
+FROM bptb_registration_request_audit r
+INNER JOIN (
+    SELECT
+        registration_id,
+        MAX(version_no) AS latest_version
+    FROM bptb_registration_request_audit
+    GROUP BY registration_id
+) latest
+ON r.registration_id = latest.registration_id
+AND r.version_no = latest.latest_version;
+/*****************************************************************************************************************************************************/
+
+
+/*Drop Table*/
+
+/*****************************************************************************************************************************************************/
+
+/*Queries Creation*/
+select * from core_user_details where user_id='2626102073644399000';
+select * from auth_user_details where user_id='2619902048038711000';
+select * from roles;
+select * from role_request where  user_id='2625602044715684000';
+select * from email_notification_logs;
+Select * from user_roles u, roles r where u.user_id='2619902050081003000' and u.role_id=r.role_id;
+Select * from user_roles where user_id='2625502047908183000';
+select * from bpvw_registraion_request_stage where registration_id='2626101073607200000';
+select * from bptb_registration_request_audit where registration_id='2625501048246265000';	
+select * from password_history;
 Select * from email_notification_logs;
-
-SELECT *
-FROM password_history
-WHERE user_id = "ms1"
-ORDER BY updated_at DESC;
-
-CREATE TABLE user_identifier (
-  user_id VARCHAR(36) PRIMARY KEY,
-  gov_id_front VARCHAR(500),
-  gov_id_back VARCHAR(500),
-
-  CONSTRAINT fk_user_identifier_core_user
-    FOREIGN KEY (user_id)
-    REFERENCES core_user_details(user_id)
-);
-
-UPDATE registration_request_stagegate
-SET status = 'PENDING'
-WHERE status = '0'
-AND registration_id IS NOT NULL;
-
-CREATE TABLE registration_request_stagegate (
-  registration_id VARCHAR(36) PRIMARY KEY,
-  username VARCHAR(100) NOT NULL,
-  name VARCHAR(500) NOT NULL,
-  email VARCHAR(100) NOT NULL,
-  mobile_number VARCHAR(20),
-  gender VARCHAR(20),
-  dob DATE,
-  status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  password_hash VARCHAR(255) NOT NULL,
-  gov_id_front VARCHAR(500),
-  gov_id_back VARCHAR(500),
-
-);
-
-SET SQL_SAFE_UPDATES = 0;
-
-UPDATE registration_request_stagegate
-SET status = 'PENDING'
-WHERE status = '0';
-
-UPDATE registration_request_stagegate
-SET status = 'APPROVED'
-WHERE status = '1';
-
-UPDATE registration_request_stagegate
-SET status = 'REJECTED'
-WHERE status = '2';
-
-ALTER TABLE registration_request_stagegate
-DROP CONSTRAINT uk_registration_username,
-DROP CONSTRAINT uk_registration_email;
-
-ALTER TABLE registration_request_stagegate
-MODIFY COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-MODIFY COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-ON UPDATE CURRENT_TIMESTAMP;
-
-ALTER TABLE registration_request_stagegate
-MODIFY COLUMN gov_id_front LONGBLOB,
-MODIFY COLUMN gov_id_back LONGBLOB;
-
-select * from registration_request_stagegate;
-Delete from registration_request_stagegate where registration_id='2615001052497506000';
-
-
-CREATE TABLE registration_requests (
-  registration_request_id VARCHAR(36) PRIMARY KEY,
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  verification_status VARCHAR(30) NOT NULL DEFAULT 'PENDING',
-  remark VARCHAR(500),
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  processing_status VARCHAR(30) NOT NULL DEFAULT 'HOLD',
-
-  CONSTRAINT fk_registration_request_stagegate
-    FOREIGN KEY (registration_request_id)
-    REFERENCES registration_request_stagegate(registration_id)
-);
-
-ALTER TABLE core_user_details
-ADD COLUMN username VARCHAR(100) NOT NULL AFTER user_id;
-
-INSERT INTO roles (role_id, role_name)
-VALUES ('ROLE_ADMIN_ID', 'ADMIN')
-ON DUPLICATE KEY UPDATE role_name = role_name;
-
-INSERT INTO roles (role_id, role_name)
-VALUES ('ROLE_USER_ID', 'USER')
-ON DUPLICATE KEY UPDATE role_name = role_name;
-
-INSERT INTO core_user_details (
-    user_id,
-    username,
-    name,
-    email,
-    mobile_number,
-    gender,
-    dob,
-    status
-) VALUES (
-    'SYSTEM_ADMIN',
-    'admin',
-    'System Administrator',
-    'admin@bookport.local',
-    '9999999999',
-    'M',
-    '2000-01-01',
-    'ACTIVE'
-);
-
-INSERT INTO auth_user_details (
-    user_id,
-    username,
-    password_hash,
-    account_non_expired,
-    account_non_locked,
-    credentials_non_expired,
-    enabled,
-    failed_attempts
-) VALUES (
-    'SYSTEM_ADMIN',
-    'admin',
-    '$2a$12$aDrB05zLOBlDe7HVUv/oJ.dAGvYIHBl2I7qQmVZPUZZA7uQ0ebsES',
-    true,
-    true,
-    true,
-    true,
-    0
-);
-
-INSERT INTO user_roles (
-    user_id,
-    role_id
-) VALUES (
-    'SYSTEM_ADMIN',
-    'ROLE_ADMIN_ID'
-);
-
-SELECT * FROM core_user_details WHERE user_id = '2619902048420496000';
-
-Delete FROM core_user_details where user_id = '2619902065348715000';
-delete FROM auth_user_details WHERE user_id = '2619902065348715000';
-delete FROM user_roles WHERE user_id = '2619902065348715000';
-Select * from user_roles;
-desc auth_user_details;
-SELECT * FROM auth_user_details WHERE user_id = '2619902063855032000';
-Select * from email_notification_logs;
-SELECT * FROM registration_request_stagegate WHERE username = 'ms1';
-
-delete from registration_request_stagegate WHERE registration_id = '2619901048173731000';
-
-select * from user_roles;
+/*****************************************************************************************************************************************************/
