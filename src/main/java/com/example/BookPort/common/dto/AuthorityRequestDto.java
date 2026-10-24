@@ -24,7 +24,7 @@ public class AuthorityRequestDto {
 
 	private List<String> userId;
 
-	@NotBlank(message = "Role is mandatory")
+	@NotNull(message = "Role is mandatory")
     private RoleEnum role;
 
     private String remark;

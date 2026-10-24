@@ -77,7 +77,7 @@ public class RegistrController {
 	        @RequestParam(value="govIdBack") MultipartFile govIdBack,
 	        @RequestParam(value="photo") MultipartFile photo,
 	        @RequestParam(value="remark") String remark) throws IOException, ParseException{
-		
+		d.dbg("Inside register method.");
 	    //Generate unique ID for incoming request. 
 		IdGenerator idGen = new IdGenerator(AppConstants.Module.AUTH_MODULE_ID);
 		String registrationId = idGen.generateId();

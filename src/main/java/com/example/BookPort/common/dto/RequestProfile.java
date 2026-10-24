@@ -5,6 +5,8 @@ import java.util.List;
 
 public class RequestProfile {
 	
+	private String traceId;
+	
 	private String userName;
 	
 	private String userId;
@@ -21,13 +23,21 @@ public class RequestProfile {
 		this.userId = userId;
 	}
 
-	public RequestProfile(String userName, String userId, ArrayList<String> userRole) {
+	public RequestProfile(String traceId, String userName, String userId, ArrayList<String> userRole) {
 		super();
+		this.traceId = traceId;
 		this.userName = userName;
 		this.userId = userId;
 		this.userRole = userRole;
+	}	
+
+	public String getTraceId() {
+		return traceId;
 	}
-	
+
+	public void setTraceId(String traceId) {
+		this.traceId = traceId;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -55,7 +65,8 @@ public class RequestProfile {
 
 	@Override
 	public String toString() {
-		return "RequestProfile [userName=" + userName + ", userId=" + userId + ", userRole=" + userRole + "]";
+		return "RequestProfile [traceId=" + traceId + ", userName=" + userName + ", userId=" + userId + ", userRole="
+				+ userRole + "]";
 	}
 
 }

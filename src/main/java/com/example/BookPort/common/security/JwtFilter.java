@@ -2,7 +2,9 @@ package com.example.BookPort.common.security;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,8 +32,11 @@ public class JwtFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
-    	
-        d.dbg("Inside JwtFilter");
+        
+    	String traceId = UUID.randomUUID().toString();
+    	MDC.put("traceId", traceId);
+    	d.dbg("Inside JwtFilter | traceId: " + traceId);
+   
         d.dbg("Request URI: " + request.getRequestURI());
         d.dbg("Request Method: " + request.getMethod());
 

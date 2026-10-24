@@ -10,7 +10,7 @@
 
         <!-- Console Appender -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} | [${APP_NAME}] | %-5level | %logger{36} | %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} | [${APP_NAME}] | %X{traceId} | %-5level | %logger{36} | %msg%n"/>
         </Console>
 
         <!-- Rolling File Appender -->
@@ -18,7 +18,7 @@
                      fileName="${LOG_DIR}/${APP_NAME}.log"
                      filePattern="${LOG_DIR}/${APP_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
 
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} | [${APP_NAME}] | %-5level | %logger{36} | %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss:SSS} | [${APP_NAME}] | %X{traceId} | %-5level | %logger{36} | %msg%n"/>
 
             <Policies>
                 <!-- Roll daily -->

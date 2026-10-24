@@ -68,9 +68,11 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<Object> login(@Valid @RequestBody LoginRequestDto request) {
+		d.dbg("Inside login method.");
 		d.dbg("Sending credentials to login service.");
 		Object response = authLoginService.login(request.getUsername(), request.getPassword());
 		d.dbg("Returns accessToken in response.");
+		d.dbg("Returning from login method.");
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(response), HttpStatus.OK);
 	}
 
@@ -85,12 +87,13 @@ public class AuthController {
 	@GetMapping("/track")
 	public ResponseEntity<Object> track(@RequestParam(name = "id", required = true) String id)
 			throws ValidationException {
-		d.dbg("Inside track");
+		d.dbg("Inside track method.");
 		if (id == null || id.isBlank()) {
 			throw new ValidationException("Id is mandatory for tracking.");
 		}
 
 		Object response = authRegisterService.track(id);
+		d.dbg("Returning from track method.");
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(response), HttpStatus.OK);
 
 	}
@@ -104,6 +107,7 @@ public class AuthController {
 			@RequestParam(value = "govIdBack", required = false) MultipartFile govIdBack,
 			@RequestParam(value = "photo", required = false) MultipartFile photo,
 			@RequestParam(value = "remark", required = false) String remark) throws IOException, ParseException {
+		d.dbg("Inside update method.");
 		AuthUpdateRequestDto request = new AuthUpdateRequestDto();
 		request.setRegistrationId(registrationId);
 		request.setUsername(username);
@@ -125,13 +129,14 @@ public class AuthController {
 		d.dbg("Incoming request: " + request.toString());
 
 		Object user = authRegisterService.update(request);
-
+		d.dbg("Returning from update method.");
+		
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(user), HttpStatus.OK);
 	}
 
 	@GetMapping("/pending")
 	public ResponseEntity<Object> fetchPendingRequests(Authentication authentication) {
-
+		d.dbg("Inside fetchPendingRequests method.");
 		SecurityUtil securityUtil = new SecurityUtil();
 
 		if (!securityUtil.hasRoleAdmin(authentication)) {
@@ -139,12 +144,14 @@ public class AuthController {
 		}
 
 		Object pendingRequests = authRegisterService.getPendingRequests();
+		d.dbg("Returning fetchPendingRequests method.");
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(pendingRequests), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}/{side}/image")
 	public ResponseEntity<byte[]> getImage(@PathVariable("id") String id, @PathVariable("side") String side)
 			throws NoResourceFoundException, IOException {
+		d.dbg("Inside getImage method.");
 		byte[] image = null;
 		if ("front".equals(side)) {
 			d.dbg("Fetching gov_id_front image.");
@@ -168,12 +175,13 @@ public class AuthController {
 			contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
 		}
 		d.dbg("Returning Image");
+		d.dbg("Returning getImage method.");
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
 	}
 
 	@PostMapping("/processAuth")
 	public ResponseEntity<Object> processAuth(@Valid @RequestBody RestRequestDto request, Authentication authentication) throws ValidationException {
-		
+		d.dbg("Inside processAuth method.");
 		d.dbg("Incoming Request.");
 		d.dbg(request.toString());
 		
@@ -208,7 +216,7 @@ public class AuthController {
 		} else {
 			throw new ValidationException("Action is invalid.");
 		}
-
+		d.dbg("Returning from processAuth method.");
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(response), HttpStatus.OK);
 	}
 

@@ -197,7 +197,7 @@ public class CoreUserRolesService {
 		 Optional<RoleRequest> roleRequestOptional = roleRequestRepo.findById(requestId);
 		 
 		 if(roleRequestOptional.isEmpty()) {
-			 new IllegalArgumentException("Role request not found: " + requestId);
+			 new ValidationException("Role request not found: " + requestId);
 		 }
 		 RoleRequest roleRequest = roleRequestOptional.get();
 		    if (roleRequest.getStatus() != StatusEnum.PENDING) {

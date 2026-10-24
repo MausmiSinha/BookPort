@@ -6,6 +6,7 @@ import java.util.List;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -68,6 +69,7 @@ public class RestControllerAspect {
 			profile.setUserId(userId);
 			profile.setUserName(userName);
 			profile.setUserRole(role);
+			profile.setTraceId((String) MDC.get("traceId"));
 			d.dbg("Request Profile populated successfully.");
 			d.dbg(profile.toString());
 		}

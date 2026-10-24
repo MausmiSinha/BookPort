@@ -57,6 +57,7 @@ public class UserController {
 	@PostMapping("/users")
 	public ResponseEntity<Object> fetchUser(@Valid @RequestBody RestRequestDto request, Authentication authentication)
 			throws ValidationException {
+		d.dbg("Inside fetchUser method.");
 		d.dbg("Incoming request: ");
 		d.dbg(request.toString());
 		RequestProfile requestProfile = request.getRequestProfile();
@@ -75,7 +76,7 @@ public class UserController {
 				throw new ValidationException("UserId cannot be null.");
 			}
 
-			if (requestProfile.getUserId() != userId && !requestProfile.getUserRole().contains(AppConstants.ADMIN)) {
+			if (requestProfile.getUserId().equals(userId) && !requestProfile.getUserRole().contains(AppConstants.ADMIN)) {
 				d.dbg("UserId in requestProfile and userId in payload are not same. Access Denied.");
 				throw new ValidationException("Access Denied.");
 			}
@@ -104,7 +105,7 @@ public class UserController {
 			return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(response, responseMetaData),
 					HttpStatus.OK);
 		}
-
+		d.dbg("Returning from fetchUser");
 		return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(finalResponse), HttpStatus.OK);
 
 	}
@@ -115,6 +116,7 @@ public class UserController {
 	@PostMapping("/authorities")
 	public ResponseEntity<RestResponseDto> authorities(@Valid @RequestBody RestRequestDto request,
 			Authentication authentication) throws ValidationException {
+		d.dbg("Inside authorities method.");
 		d.dbg("Incoming request: ");
 		d.dbg(request.toString());
 		
@@ -174,7 +176,7 @@ public class UserController {
 		    	d.dbg("Invalid action: " + action);
 		    	throw new ValidationException("Invalid action: " + action);
 		    }
-		    
+			d.dbg("Returning from authorities method.");
 		    return new ResponseEntity<>(BookPortResponseBuilder.buildSuccessReponse(response), HttpStatus.OK);
 		    
 		
